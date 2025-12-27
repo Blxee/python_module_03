@@ -1,12 +1,17 @@
-if __name__ == "__main__":
-    from sys import argv
+import sys
 
-    scores = argv[1:]
+
+def main():
+    """Main function"""
+    scores = sys.argv[1:]
 
     print("=== Player Score Analytics ===")
 
     if len(scores) == 0:
-        print("No scores provided. Usage: python3 ft_score_analytics.py <score1> <score2> ...")
+        print(
+            "No scores provided. Usage: "
+            "python3 ft_score_analytics.py <score1> <score2> ..."
+        )
     else:
         try:
             i = 0
@@ -20,5 +25,9 @@ if __name__ == "__main__":
             print("High score:", max(scores))
             print("Low score:", min(scores))
             print("Score range:", max(scores) - min(scores))
-        except:
+        except ValueError:
             print("You are very naughty..")
+
+
+if __name__ == "__main__":
+    main()

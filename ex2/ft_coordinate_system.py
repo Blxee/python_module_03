@@ -1,7 +1,8 @@
-from sys import argv
 from math import sqrt
 
+
 def parse_coords(s: str) -> tuple:
+    """Parses the given string to 3D coords"""
     try:
         x, y, z = s.split(",")
         return (int(x), int(y), int(z))
@@ -11,30 +12,34 @@ def parse_coords(s: str) -> tuple:
         print("Error parsing coordinates:", e)
         print(f"Error details - Type: {e_type}, Args: {e_args}")
 
+
 def find_distance(pos1: tuple, pos2: tuple) -> None:
+    """Calculates the distance between two vectors in 3D space"""
     x1, y1, z1 = pos1
     x2, y2, z2 = pos2
 
     dist: float = sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2)
 
-    print(f"Distance between {pos1} and {pos2}: {dist:.2f} ");
+    print(f"Distance between {pos1} and {pos2}: {dist:.2f} ")
 
 
-if __name__ == "__main__":
+def main() -> None:
+    """Main function"""
+    print("=== Game Coordinate System ===")
     SPAWN_COORDS = (0, 0, 0)
 
     coords1 = (10, 20, 5)
-    print("Position created:", coords1)
+    print("\nPosition created:", coords1)
     find_distance(SPAWN_COORDS, coords1)
 
     coords2_str = "3,4,0"
-    print(f"\nParsing coordinates: \"{coords2_str}\"")
+    print(f'\nParsing coordinates: "{coords2_str}"')
     coords2 = parse_coords(coords2_str)
     print("Parsed position:", coords2)
     find_distance(SPAWN_COORDS, coords2)
 
     coords3_str = "abc,def,ghi"
-    print(f"\nParsing invalid coordinates: \"{coords3_str}\"")
+    print(f'\nParsing invalid coordinates: "{coords3_str}"')
     parse_coords(coords3_str)
 
     print("\nUnpacking demonstration:")
@@ -42,3 +47,7 @@ if __name__ == "__main__":
     print(f"Player at {x=}, {y=}, {z=}")
     X, Y, Z = coords2
     print(f"Coordinates: {X=}, {Y=}, {Z=}")
+
+
+if __name__ == "__main__":
+    main()
